@@ -1,0 +1,45 @@
+extends layouts/header.pug
+block content 
+    script(src="js/createcharacter.js")
+    .container 
+        .row#createnames
+            .col-6
+                .card
+                    .card-body 
+                        //- Form for creating a new character
+                        form(action="/create-character", method="POST" class="my-4")
+                            .form-group
+                              label(for="name") Name:
+                              input(type="text", name="name", id="name", class="form-control")
+                            .form-group
+                              label(for="house") House:
+                              input(type="text", name="house", id="house", class="form-control")
+                            .form-group
+                              label(for="health") Health:
+                              input(type="number", name="health", id="health", min="0", class="form-control")
+                            .form-group
+                              label(for="armor") Armor:
+                              input(type="number", name="armor", id="armor", min="0", class="form-control")
+                            .form-group
+                              label(for="weapon_id") Weapon:
+                              select(name="weapon_id", id="weapon_id", class="form-control")
+                                each weapon in weapons
+                                  option(value=weapon.id)= weapon.name
+                            .text-center
+                                button(type="submit" class="btn btn-primary mt-2") Create Character
+            .col-6
+                .card
+                    .card-body 
+                        //- Form for creating a new weapon
+                        form(action="/create-weapon", method="POST" class="my-4" )
+                             .form-group
+                               label(for="weaponName") Name:
+                               input(type="text", name="weaponName", id="weaponName", class="form-control")
+                             .form-group
+                               label(for="damage") Damage:
+                               input(type="number", name="damage", id="damage", min="0", class="form-control")
+                             .form-group
+                               label(for="price") Price:
+                               input(type="number", name="price", id="price", min="0", class="form-control")
+                             .text-center
+                                button(type="submit" class="btn btn-primary mt-2") Create Weapon

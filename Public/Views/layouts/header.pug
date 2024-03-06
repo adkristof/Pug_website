@@ -1,0 +1,26 @@
+doctype html
+html(lang="hu")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        title GOT 
+        link(rel="stylesheet" href="../css/style.css")
+        link(rel="stylesheet", href="bootstrap.min.css")
+        script(src="bootstrap.min.js") ;
+        script(src="bootstrap.bundle.min.js") 
+    body 
+        header
+            nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+                .container-fluid
+                    a.navbar-brand(href="/") Game Of Thrones
+                    button.navbar-toggler(type='button', data-bs-toggle='collapse', data-bs-target='#navbarNav', aria-controls='navbarNav', aria-expanded='false', aria-label='Toggle navigation')
+                    #navbarNav.collapse.navbar-collapse
+                    ul.navbar-nav.ms-auto.me-lg-3
+                        li.nav-item.dropdown
+                        a.nav-link.dropdown-toggle(href='#', id='navbarDropdown', role='button', data-bs-toggle='dropdown', aria-expanded='false') Menu
+                        ul.dropdown-menu.dropdown-menu-end.dark-bg.bg-dark(aria-labelledby='navbarDropdown')
+                            li
+                            a.dropdown-item(href='/create') Create
+                            li
+                            a.dropdown-item(href='/delete') Delete
+        block content

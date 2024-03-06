@@ -1,0 +1,19 @@
+extends layouts/header.pug
+block content
+    .container 
+        .row#indexnames
+            .col-6
+                .card
+                    .card-body
+                        h5.card-title Characters
+                        -console.log(charactersdata);
+                        each item in charactersdata
+                            hr
+                            p.card-text #{item.name}
+            .col-6
+                .card
+                    .card-body
+                        h5.card-title Weapons
+                        each item in weaponsdata
+                            hr
+                            p.card-text #{item.name}
