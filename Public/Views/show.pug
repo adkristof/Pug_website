@@ -1,0 +1,36 @@
+extends layouts/header.pug
+block content 
+    if(characters != null)
+        .container.mb-5
+            .card
+                .card-body
+                    h1.card-title Characters
+        .container 
+            .row
+                each character in characters 
+                    .col-4.mb-3 
+                        .card
+                            .card-body
+                                h5.card-title(style="text-align:center") #{character.name}
+                                p.card-text House: #{character.house}
+                                p.card-text Healt: #{character.health}
+                                p.card-text Armor: #{character.armor}
+                                a(href=`/deleteCharacter/:${character.id}`) 
+                                    button.btn.btn-danger.deleteButton(type='button' data-id=character._id) Delete
+    if(weapons != null )
+        .container.mb-5
+            .card
+                .card-body
+                    h1.card-title Weapons
+        .container 
+            .row
+                each weapon in weapons 
+                    .col-4.mb-3 
+                        .card
+                            .card-body
+                                h5.card-title(style="text-align:center") #{weapon.name}
+                                p.card-text Damage: #{weapon.damage}
+                                p.card-text Price: #{weapon.price}  
+                                if(weapon.id!=0)
+                                    a(href=`/deleteWeapon/:${weapon.id}`) 
+                                        button.btn.btn-danger.deleteButton(type='button') Delete

@@ -20,3 +20,9 @@ body{
 .dark-bg .dropdown-item {
     color: #ffffff; /* White text color */
   }
+  .white-bg {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+  }

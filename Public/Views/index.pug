@@ -10,6 +10,9 @@ block content
                         each item in charactersdata
                             hr
                             p.card-text #{item.name}
+                        hr
+                        a(href="/showCharacters")
+                            button(type="button" class="btn btn-primary mt-2") Details
             .col-6
                 .card
                     .card-body
@@ -17,3 +20,6 @@ block content
                         each item in weaponsdata
                             hr
                             p.card-text #{item.name}
+                        hr
+                        a(href="/showWeapons")
+                            button(type="button" class="btn btn-primary mt-2") Details

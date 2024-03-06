@@ -1,13 +1,13 @@
 const { MongoClient } = require('mongodb');
 const uri = 'mongodb://localhost:27017';
-const dbName = 'GameOfThrones-RPG'; // Change this to your database name
+const dbName = 'GameOfThrones_RPG'; // Change this to your database name
 
 const characters = [
-    { id: 1, name: 'Tyrion Lannister', house: 'Lannister' ,healt:50,armor:10,weapon_id:1},
-    { id: 2, name: 'Jon Snow', house: 'Stark',healt:100 ,armor:15,weapon_id:2},
-    { id: 3, name: 'Daenerys Targaryen', house: 'Targaryen',healt:80,armor:5,weapon_id:3},
-    { id: 4, name: 'Bran Stark', house: 'Stark',healt:30,armor:5,weapon_id:3},
-    { id: 5, name: 'Samwell Tarly', house: 'Tarly',healt:120,armor:10,weapon_id:5}
+    { id: 1, name: 'Tyrion Lannister', house: 'Lannister' ,health:50,armor:10,weapon_id:1},
+    { id: 2, name: 'Jon Snow', house: 'Stark',health:100 ,armor:15,weapon_id:2},
+    { id: 3, name: 'Daenerys Targaryen', house: 'Targaryen',health:80,armor:5,weapon_id:3},
+    { id: 4, name: 'Bran Stark', house: 'Stark',health:30,armor:5,weapon_id:3},
+    { id: 5, name: 'Samwell Tarly', house: 'Tarly',health:120,armor:10,weapon_id:5}
   ];
   const weapons = [
     { id: 1, name: 'Sword', damage:20 ,price:100},
