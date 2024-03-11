@@ -1,4 +1,5 @@
 extends layouts/header.pug
+
 block content 
     if(characters != null)
         .container.mb-5
@@ -13,10 +14,11 @@ block content
                             .card-body
                                 h5.card-title(style="text-align:center") #{character.name}
                                 p.card-text House: #{character.house}
-                                p.card-text Healt: #{character.health}
+                                p.card-text Health: #{character.health}
                                 p.card-text Armor: #{character.armor}
-                                a(href=`/deleteCharacter/:${character.id}`) 
-                                    button.btn.btn-danger.deleteButton(type='button' data-id=character._id) Delete
+                                a(href=`/editCharacter/${character.id}`, class="btn btn-success editButton", type="button", data-id=character._id) Edit
+                                span(style="margin-right: 5px;")
+                                a(href=`/deleteCharacter/:${character.id}`, class="btn btn-danger deleteButton", type="button", data-id=character._id) Delete
     if(weapons != null )
         .container.mb-5
             .card
@@ -32,5 +34,6 @@ block content
                                 p.card-text Damage: #{weapon.damage}
                                 p.card-text Price: #{weapon.price}  
                                 if(weapon.id!=0)
-                                    a(href=`/deleteWeapon/:${weapon.id}`) 
-                                        button.btn.btn-danger.deleteButton(type='button') Delete
+                                    a(href=`/editWeapon/${weapon.id}`, class="btn btn-success editButton", type="button") Edit
+                                    span(style="margin-right: 5px;")
+                                    a(href=`/deleteWeapon/:${weapon.id}`, class="btn btn-danger deleteButton", type="button") Delete

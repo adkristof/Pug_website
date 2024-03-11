@@ -1,0 +1,23 @@
+extends layouts/header.pug
+
+block content 
+    .container 
+        .row#createnames
+            .col-6
+                .card
+                    .card-body 
+                        -console.log(weapon)
+                        h1 #{weapon.name} Update
+                        //- Form for editing the weapon
+                        form(action=`/changeWeapon/${weapon.id}`, method="POST", class="my-4" )
+                            .form-group
+                                label(for="name") Name:
+                                input(type="text", name="name", id="name", class="form-control", value=weapon.name)
+                            .form-group
+                                label(for="damage") Damage:
+                                input(type="number", name="damage", id="damage", min="0", class="form-control", value=weapon.damage)
+                            .form-group
+                                label(for="price") Price:
+                                input(type="number", name="price", id="price", min="0", class="form-control", value=weapon.price)
+                            .text-center
+                                button(type="submit" class="btn btn-primary mt-2") Update Weapon

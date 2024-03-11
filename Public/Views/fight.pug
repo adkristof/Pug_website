@@ -1,80 +1,84 @@
 extends layouts/header.pug 
 block content
-   .container.my-5
-      h1.text-center.mb-4 Fight Page
+  .container.my-5
+    h1.text-center.mb-4 Fight Page
 
-      #characterSelection.white-bg
-        .row.mb-4
-          .col-md-6
-            h2.text-center.mb-3 Choose Character 1:
-            select#character1Select.form-control
-              each character in characters
-                option(value=character.id)= character.name
+    #characterSelection.white-bg
+      .row.mb-4
+        .col-md-6
+          h2.text-center.mb-3 Choose Character 1:
+          select#character1Select.form-control
+            each character in characters
+              option(value=character.id)= character.name
 
-            h2.text-center.mb-3 Choose Weapon for Character 1:
-            select#weapon1Select.form-control
-              each weapon in weapons
-                option(value=weapon.id)= weapon.name
-
-            //- Winner display for character 1
-            .winner-info.text-center
-              | Winner: 
-              span#character1Winner
-
-          .col-md-6
-            h2.text-center.mb-3 Choose Character 2:
-            select#character2Select.form-control
-              each character in characters
-                option(value=character.id)= character.name
-
-            h2.text-center.mb-3 Choose Weapon for Character 2:
-            select#weapon2Select.form-control
-              each weapon in weapons
-                option(value=weapon.id)= weapon.name
-
-            //- Winner display for character 2
-            .winner-info.text-center
-              | Winner: 
-              span#character2Winner
-
-        //- Use jQuery for event handling
-        button#startFightBtn.btn.btn-primary.btn-block Start Fight
-
-      #fightResults.white-bg(style="display: none;")
-        h2.text-center.mb-3 Fight Results
-        p#winningText.text-center
+          h2.text-center.mb-3 Choose Weapon for Character 1:
+          select#weapon1Select.form-control
+            each weapon in weapons
+              option(value=weapon.id)= weapon.name
 
 
-      script.
-        $(document).ready(function() {
-          // Use jQuery click event handler
-          $('#startFightBtn').click(function() {
-            startFight();
-          });
-        });
+        .col-md-6
+          h2.text-center.mb-3 Choose Character 2:
+          select#character2Select.form-control
+            each character in characters
+              option(value=character.id)= character.name
 
-        function startFight() {
-          // Get selected character and weapon IDs
-          const character1Id = $('#character1Select').val();
-          const character2Id = $('#character2Select').val();
-          const weapon1Id = $('#weapon1Select').val();
-          const weapon2Id = $('#weapon2Select').val();
+          h2.text-center.mb-3 Choose Weapon for Character 2:
+          select#weapon2Select.form-control
+            each weapon in weapons
+              option(value=weapon.id)= weapon.name
 
-          // Fetch character and weapon data based on IDs (from characters and weapons arrays)
-          const character1 = characters.find(character => character.id == character1Id);
-          const character2 = characters.find(character => character.id == character2Id);
-          const weapon1 = weapons.find(weapon => weapon.id == weapon1Id);
-          const weapon2 = weapons.find(weapon => weapon.id == weapon2Id);
+      //- Use jQuery for event handling
+      button.btn.btn-primary.btn-blocko(onclick=`startFight();`) Start Fight
 
-          // Calculate damage based on weapon and armor
-          let damage1 = Math.max(1, weapon1.damage - character2.armor);
-          let damage2 = Math.max(1, weapon2.damage - character1.armor);
+    #fightResults.white-bg(style="display: none;")
+      h2.text-center.mb-3 Fight Results
+      p#winningText.text-center
 
-          // Update health of characters based on damage
-          character1.health -= damage2;
-          character2.health -= damage1;
 
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+    script.
+
+      function startFight() {
+        // JavaScript code here
+        const characters = !{JSON.stringify(characters)};
+        const weapons = !{JSON.stringify(weapons)};
+        // Get selected character and weapon IDs
+        const character1Id = $('#character1Select').val();
+        const character2Id = $('#character2Select').val();
+        const weapon1Id = $('#weapon1Select').val();
+        const weapon2Id = $('#weapon2Select').val();
+
+        // Fetch character and weapon data based on IDs (from characters and weapons arrays)
+        const character1 = characters.find(character => character.id == character1Id);
+        const character2 = characters.find(character => character.id == character2Id);
+        const weapon1 = weapons.find(weapon => weapon.id == weapon1Id);
+        const weapon2 = weapons.find(weapon => weapon.id == weapon2Id);
+
+        // Initialize variable to keep track of current character
+        let currentCharacter = character1;
+
+        // Calculate damage based on weapon and armor
+        let damage1 = Math.max(1, weapon1.damage - character2.armor);
+        let damage2 = Math.max(1, weapon2.damage - character1.armor);
+          while (character1.health > 0 && character2.health > 0) {
+            // Apply damage to current character
+            if (currentCharacter === character1) {
+              character2.health -= damage1;
+            } else {
+              character1.health -= damage2;
+            }
+
+            // Switch to the other character
+            currentCharacter = (currentCharacter === character1) ? character2 : character1;
+          } 
+          
           // Display fight results
           $('#fightResults').show();
-          $('#winningText').text(`Character 1 health: ${character1.health}, Character 2 health: ${character2.health}`);
+          if(character1.name!==character2.name){
+            $('#winningText').text(`${character1.name} health: ${character1.health}, ${character2.name} health: ${character2.health}`);
+          }
+          else{
+            $('#winningText').text(`He/She cant fight him/her-self.`)
+          }
         }

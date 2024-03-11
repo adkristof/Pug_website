@@ -6,6 +6,7 @@ block content
             .col-6
                 .card
                     .card-body 
+                        h1 Characters
                         //- Form for creating a new character
                         form(action="/create-character", method="POST" class="my-4")
                             .form-group
@@ -20,16 +21,12 @@ block content
                             .form-group
                               label(for="armor") Armor:
                               input(type="number", name="armor", id="armor", min="0", class="form-control")
-                            .form-group
-                              label(for="weapon_id") Weapon:
-                              select(name="weapon_id", id="weapon_id", class="form-control")
-                                each weapon in weapons
-                                  option(value=weapon.id)= weapon.name
                             .text-center
                                 button(type="submit" class="btn btn-primary mt-2") Create Character
             .col-6
                 .card
                     .card-body 
+                        h1 Weapons
                         //- Form for creating a new weapon
                         form(action="/create-weapon", method="POST" class="my-4" )
                              .form-group
